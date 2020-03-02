@@ -1,8 +1,12 @@
-module.exports = {
-  dialect: 'sqlite',
-  host: 'localhost',
-  username: 'root',
-  password: '123',
-  database: 'teste', 
-  storage: '../database/database.sqlite'
-};
+const Sequelize = require('sequelize');
+//const { dialect, host, username, password, database, storage } = require('../config/database');
+
+
+
+const sequelize = new Sequelize(database, username, password, {
+  host: host,
+  dialect: dialect,
+  storage: storage
+});
+
+module.exports = sequelize;
