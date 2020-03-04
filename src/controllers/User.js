@@ -1,5 +1,4 @@
 const User = require('../models/User');
-
 const getAll = async (req, res) => {
     try {
         const data = await User.findAll({});

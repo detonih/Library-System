@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 require('dotenv').config({ path: process.env.NODE_ENV === 'test' ? '../../.env.testing' : '../../.env'});
-console.log(process.env.NODE_ENV)
-console.log(process.env.DB_DIALECT)
+
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASS, {
   host: process.env.DB_HOST,
   dialect: process.env.DB_DIALECT,
