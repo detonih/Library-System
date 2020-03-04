@@ -2,9 +2,9 @@
   "name": "TestandoSequelize",
   "version": "1.0.0",
   "description": "",
-  "main": "",
+  "main": "./src/bin/server.js",
   "scripts": {
-    "test": "jest --config ./jest.config.js --forceExit --coverage"
+    "test": "jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "jest": "^25.1.0",
-    "sequelize-mock": "^0.10.2"
+    "sequelize-mock": "^0.10.2",
+    "supertest": "^4.0.2"
   }
 }

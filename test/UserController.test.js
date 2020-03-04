@@ -1,7 +1,7 @@
-const { getAll } = require('./src/controllers/User.js');
+const { getAll } = require('../src/controllers/User');
 
 describe('Testing getAll users', () => {
-    it('Should get all the users in database', async () => {
+    test('Should get all the users in database', async () => {
         const users = await getAll();
 
         expect(users.body).toEqual('hello')
