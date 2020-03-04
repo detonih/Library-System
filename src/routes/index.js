@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const users = require('./User');
+const users = require('./users');
 
 router.get('/', (req, res) => {
   res.send('Página principal')
 });
 
-router.post('/users', users)
+router.use('/users', users)
 
 module.exports = router;
