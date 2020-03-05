@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const users = require('./users');
+const users = require('./users.js');
 
 router.get('/', (req, res) => {
   res.send('Página principal')

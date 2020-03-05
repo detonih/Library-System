@@ -9,4 +9,4 @@ const User = sequelizeConfig.define('User', {
   email: Sequelize.STRING
 });
 
-module.exports = User;
+module.exports = { User };
