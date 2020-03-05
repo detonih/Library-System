@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelizeConfig = require('../config/database');
+const {Loan} = require('../models/Loan');
 
 const User = sequelizeConfig.define('User', {
   registry: {
@@ -21,5 +22,10 @@ const User = sequelizeConfig.define('User', {
     allowNull: false
   }
 });
+
+//One User can make many Loans
+User.hasMany(Loan);
+//One loan belongs to one user
+Loan.belongsTo(User);
 
 module.exports = { User };

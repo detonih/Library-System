@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const sequelize = require('../config/database');
 
-User.sync()
-  .then(() => console.log('Database synced'))
+sequelize.sync()
+  .then(() => console.log('Database synced on ' + process.env.NODE_ENV + ' mode'))
