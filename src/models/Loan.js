@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
-const {Book} = require('../models/Book');
+const { Book } = require('../models/Book');
 
 const Loan = sequelize.define('Loan', {
-    loan_code: {
+    code: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -11,10 +11,6 @@ const Loan = sequelize.define('Loan', {
     },
     date: {
         type: Sequelize.DATE,
-        allowNull: false
-    },
-    user_registry: {
-        type: Sequelize.INTEGER,
         allowNull: false
     },
     return_date: {

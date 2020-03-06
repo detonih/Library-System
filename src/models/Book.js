@@ -15,10 +15,6 @@ const Book = sequelize.define('Book', {
     author: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    departament_code: {
-        type: Sequelize.INTEGER,
-        allowNull: false
     }
 });
 

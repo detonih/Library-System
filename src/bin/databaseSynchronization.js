@@ -1,7 +1,7 @@
-const {Book} = require('../models/Book');
-const {Departament} = require('../models/Departament');
-const {Loan} = require('../models/Loan');
-const {User} = require('../models/User');
+const { Book } = require('../models/Book');
+const { Departament } = require('../models/Departament');
+const { Loan } = require('../models/Loan');
+const { User } = require('../models/User');
 
 const models = [Book, Departament, Loan, User];
 

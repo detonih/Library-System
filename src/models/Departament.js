@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
-const {Book} = require('../models/Book');
+const { Book } = require('../models/Book');
 
 const Departament = sequelize.define('Departament', {
-    departament_code: {
+    code: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,

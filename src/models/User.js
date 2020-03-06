@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelizeConfig = require('../config/database');
-const {Loan} = require('../models/Loan');
+const { Loan } = require('../models/Loan');
 
 const User = sequelizeConfig.define('User', {
   registry: {
