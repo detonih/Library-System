@@ -32,18 +32,21 @@ const getById = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const data = await Book.create(req.body);
-
+    const book = req.body;
+    const data = await Book.create(book);
+    const { tracking_code } = data;
+    
     const findDataIfExists = await Book.findOne({
       where: {
-        tracking_code: data.tracking_code
+        tracking_code
       }
     });
 
-    // if data is null means Book was deleted
-    if(findDataIfExists === null) {
+    // if data isn't null means Book exists
+    if(findDataIfExists !== null) {
       res.status(201).json({
-        message: "Book deleted sucessfully"
+        "message": "Book created sucessfully",
+        "data": findDataIfExists
       });
     } else {
       res.status(404).json({
@@ -59,17 +62,30 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   try {
     const { tracking_code } = req.params;
-    const user = req.body;
-    const data = await Book.update(user, {
-      where: {
-        code
-      }
-    });
-    res.status(201).json(await Book.findOne({
+    const book = req.body;
+    const data = await Book.update(book, {
       where: {
         tracking_code
       }
-    }))
+    });
+
+    const findDataIfExists = await Book.findOne({
+      where: {
+        tracking_code
+      }
+    })
+
+    // if data isn't null means Book exists
+    if(findDataIfExists !== null) {
+      res.status(201).json({
+        "message": "Book updated sucessfully",
+        "data": findDataIfExists
+      });
+    } else {
+      res.status(404).json({
+        message: "Something is wrong"
+      });
+    }
   } catch (err) {
     console.log(err)
   }

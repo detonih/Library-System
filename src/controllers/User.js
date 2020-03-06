@@ -50,9 +50,27 @@ const getAllLoans = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const data = await User.create(req.body);
+    const user = req.body;
+    const data = await User.create(user);
+    const { registry } = data;
+    
+    const findDataIfExists = await User.findOne({
+      where: {
+        registry
+      }
+    });
 
-    res.status(201).json(data);
+    // if data isn't null means User exists
+    if(findDataIfExists !== null) {
+      res.status(201).json({
+        "message": "User created sucessfully",
+        "data": findDataIfExists
+      });
+    } else {
+      res.status(404).json({
+        message: "Something is wrong"
+      });
+    }
   } catch (err) {
       console.log(err)
   }
@@ -67,11 +85,25 @@ const update = async (req, res) => {
         registry
       }
     });
-    res.status(201).json(await User.findOne({
+
+    const findDataIfExists = await User.findOne({
       where: {
         registry
       }
-    }))
+    })
+
+    // if data isn't null means User exists
+    if(findDataIfExists !== null) {
+      res.status(201).json({
+        "message": "User updated sucessfully",
+        "data": findDataIfExists
+      });
+    } else {
+      res.status(404).json({
+        message: "Something is wrong"
+      });
+    }
+    
   } catch (err) {
     console.log(err)
   }

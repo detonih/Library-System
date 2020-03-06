@@ -32,9 +32,27 @@ const getById = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const data = await Loan.create(req.body);
+    const loan = req.body;
+    const data = await Loan.create(loan);
+    const { code } = data;
+    
+    const findDataIfExists = await Loan.findOne({
+      where: {
+        code
+      }
+    });
 
-    res.status(201).json(data);
+    // if data isn't null means Loan exists
+    if(findDataIfExists !== null) {
+      res.status(201).json({
+        "message": "Loan created sucessfully",
+        "data": findDataIfExists
+      });
+    } else {
+      res.status(404).json({
+        message: "Something is wrong"
+      });
+    }
   } catch (err) {
       console.log(err)
   }
@@ -43,17 +61,30 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   try {
     const { code } = req.params;
-    const user = req.body;
-    const data = await Loan.update(user, {
+    const loan = req.body;
+    const data = await Loan.update(loan, {
       where: {
         code
       }
     });
-    res.status(201).json(await Loan.findOne({
+
+    const findDataIfExists = await Loan.findOne({
       where: {
         code
       }
-    }))
+    })
+
+    // if data isn't null means Loan exists
+    if(findDataIfExists !== null) {
+      res.status(201).json({
+        "message": "Loan updated sucessfully",
+        "data": findDataIfExists
+      });
+    } else {
+      res.status(404).json({
+        message: "Something is wrong"
+      });
+    }
   } catch (err) {
     console.log(err)
   }

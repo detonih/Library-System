@@ -5,7 +5,7 @@ const Book = sequelize.define('Book', {
   tracking_code: {
     type: Sequelize.INTEGER,
     primaryKey: true,
-    autoIncremente: true,
+    autoIncrement: true,
     allowNull: false
   },
   tittle: {
