@@ -4,18 +4,18 @@ const { Book } = require('../models/Book');
 
 const Departament = sequelize.define('Departament', {
   code: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
   },
   description: {
-      type: Sequelize.TEXT,
-      allowNull: false
+    type: Sequelize.TEXT,
+    allowNull: false
   },
   location: {
-      type: Sequelize.STRING,
-      allowNull: false
+    type: Sequelize.STRING,
+    allowNull: false
   }
 });
 
