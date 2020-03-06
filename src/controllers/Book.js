@@ -1,8 +1,8 @@
-const { Loan } = require('../models/Loan');
+const { Book } = require('../models/Book');
 
 const getAll = async (req, res) => {
   try {
-    const data = await Loan.findAll();
+    const data = await Book.findAll();
     
     res.status(200).json({
         "total": data.length,
@@ -15,10 +15,10 @@ const getAll = async (req, res) => {
 
 const getById = async (req, res) => {
   try {
-    const { code } = req.params
-    const data = await Loan.findOne({
+    const { tracking_code } = req.params
+    const data = await Book.findOne({
         where: {
-          code
+          tracking_code
         }
     });
 
@@ -32,9 +32,25 @@ const getById = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const data = await Loan.create(req.body);
+    const data = await Book.create(req.body);
 
-    res.status(201).json(data);
+    const findDataIfExists = await Book.findOne({
+      where: {
+        tracking_code: data.tracking_code
+      }
+    });
+
+    // if data is null means Book was deleted
+    if(findDataIfExists === null) {
+      res.status(201).json({
+        message: "Book deleted sucessfully"
+      });
+    } else {
+      res.status(404).json({
+        message: "Something is wrong"
+      });
+    }
+
   } catch (err) {
       console.log(err)
   }
@@ -42,16 +58,16 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const { code } = req.params;
+    const { tracking_code } = req.params;
     const user = req.body;
-    const data = await Loan.update(user, {
+    const data = await Book.update(user, {
       where: {
         code
       }
     });
-    res.status(201).json(await Loan.findOne({
+    res.status(201).json(await Book.findOne({
       where: {
-        code
+        tracking_code
       }
     }))
   } catch (err) {
@@ -61,23 +77,23 @@ const update = async (req, res) => {
 
 const destroy = async (req, res) => {
   try {
-    const { code } = req.params;
-    const data = await Loan.destroy({
+    const { tracking_code } = req.params;
+    const data = await Book.destroy({
       where: {
-        code
+        tracking_code
       }
     });
 
-    const findDataIfExists = await Loan.findOne({
+    const findDataIfExists = await Book.findOne({
       where: {
-        code
+        tracking_code
       }
     });
     
-    // if data is null means loan was deleted
+    // if data is null means Book was deleted
     if(findDataIfExists === null) {
       res.status(200).send({
-        message: "Loan deleted sucessfully"
+        message: "Book deleted sucessfully"
       });
     } else {
       res.status(404).json({
