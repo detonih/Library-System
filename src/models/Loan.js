@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
+const { Book } = require('../models/Book');
 
 const Loan = sequelize.define('Loan', {
   code: {
@@ -17,5 +18,7 @@ const Loan = sequelize.define('Loan', {
     allowNull: false
   }
 });
+
+//Implementation of loan and book association needed
 
 module.exports = { Loan };

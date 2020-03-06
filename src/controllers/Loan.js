@@ -54,7 +54,9 @@ const getAllBooksByLoanCode= async (req, res) => {
 const create = async (req, res) => {
   try {
     const loan = req.body;
+    const parseLoan = req.body.BookTrackingCode
     const data = await Loan.create(loan);
+
     const { code } = data;
     
     const findDataIfExists = await Loan.findOne({
