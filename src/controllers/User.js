@@ -7,18 +7,18 @@ const getAll = async (req, res) => {
     res.status(200).json({
         "total": data.length,
         "data": data
-    })
+    });
   }catch (err) {
       console.log(err)
   }
 }
 
-const getById = (req, res) => {
+const getById = async (req, res) => {
   try {
     const { registry } = req.params
     const data = await User.findOne({
         where: {
-            id: registry
+            registry
         }
     });
 
@@ -42,5 +42,7 @@ const create = async (req, res) => {
 
 module.exports = {
   getAll,
-  create
+  getById,
+  create,
+
 }

@@ -6,7 +6,7 @@ const User = sequelizeConfig.define('User', {
   registry: {
     type: Sequelize.INTEGER,
     primaryKey: true,
-    autoIncremente: true,
+    autoIncrement: true,
     allowNull: false
   },
   name: {
