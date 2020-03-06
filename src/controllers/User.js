@@ -34,7 +34,7 @@ const getByRegistry = async (req, res) => {
 const getAllLoansByUserRegistry = async (req, res) => {
   try {
     const { registry } = req.params;
-    console.log(registry)
+    
     const data = await User.findOne({
       where: {
         registry
@@ -43,9 +43,9 @@ const getAllLoansByUserRegistry = async (req, res) => {
     });
 
     res.status(200).json({
-      "total": data.length,
-      "data": data.Loans
-    })
+      "total": data.Loans.length,
+      "data": data
+    });
   } catch (err) {
     console.log(err)
   }

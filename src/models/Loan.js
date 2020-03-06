@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
-const { Book } = require('../models/Book');
 
 const Loan = sequelize.define('Loan', {
   code: {
@@ -18,10 +17,5 @@ const Loan = sequelize.define('Loan', {
     allowNull: false
   }
 });
-
-//One Loan may contain several books
-Loan.hasMany(Book);
-// One book belongs to just one Loan;
-Book.belongsTo(Loan);
 
 module.exports = { Loan };

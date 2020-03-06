@@ -1,4 +1,5 @@
 const { Loan } = require('../models/Loan');
+const { Book } = require('../models/Book');
 
 const getAll = async (req, res) => {
   try {
@@ -27,6 +28,26 @@ const getById = async (req, res) => {
     });
   } catch (err) {
 
+  }
+}
+
+const getAllBooksByLoanCode= async (req, res) => {
+  try{
+    const { code } = req.params;
+    console.log(code)
+    const data = await Loan.findOne({
+      where: {
+        code
+      },
+      include: Book
+    });
+
+    res.status(200).json({
+      "total": data.length,
+      "data": data
+    });
+  } catch(err) {
+    console.log(err)
   }
 }
 
@@ -124,6 +145,7 @@ const destroy = async (req, res) => {
 module.exports = {
   getAll,
   getById,
+  getAllBooksByLoanCode,
   create,
   update,
   destroy

@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
+const { Loan } = require('../models/Loan');
 
 const Book = sequelize.define('Book', {
   tracking_code: {
@@ -17,5 +18,12 @@ const Book = sequelize.define('Book', {
     allowNull: false
   }
 });
+
+// One book may have just one loan (this will create the colum on Loan table)
+//the book can only be on a single loan
+Book.hasMany(Loan);
+
+Loan.belongsTo(Book);
+
 
 module.exports = { Book };
