@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
-//const {Departament} = require('../models/Departament');
 
 const Book = sequelize.define('Book', {
     tracking_code: {

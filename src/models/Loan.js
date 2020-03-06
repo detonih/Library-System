@@ -28,4 +28,4 @@ Loan.hasMany(Book);
 // One book belongs to just one Loan;
 Book.belongsTo(Loan);
 
-module.exports = { Loan, Book };
+module.exports = { Loan };

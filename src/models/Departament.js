@@ -24,4 +24,4 @@ Departament.hasMany(Book);
 // One book belongs to one departament
 Book.belongsTo(Departament);
 
-module.exports = { Departament, Book };
+module.exports = { Departament };
