@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { getAll, getById, getAllLoans, create, update, destroy  } = require('../controllers/User.js');
+const { getAll, getByRegistry, getAllLoansByUserRegistry, create, update, destroy  } = require('../controllers/User.js');
 
 router.get('/', getAll);
-router.get('/:registry', getById);
-router.get('/loans', getById);
+router.get('/:registry', getByRegistry);
+router.get('/loans/:registry', getAllLoansByUserRegistry);
 router.post('/', create);
 router.patch('/:registry', update);
 router.delete('/:registry', destroy);

@@ -14,9 +14,9 @@ const getAll = async (req, res) => {
   }
 }
 
-const getById = async (req, res) => {
+const getByRegistry = async (req, res) => {
   try {
-    const { registry } = req.params
+    const { registry } = req.params;
     const data = await User.findOne({
         where: {
             registry
@@ -31,17 +31,20 @@ const getById = async (req, res) => {
   }
 } 
 
-const getAllLoans = async (req, res) => {
+const getAllLoansByUserRegistry = async (req, res) => {
   try {
-    const data = await User.getAll({
+    const { registry } = req.params;
+    console.log(registry)
+    const data = await User.findOne({
       where: {
-        include: Loan
-      }
+        registry
+      },
+      include: Loan
     });
 
     res.status(200).json({
       "total": data.length,
-      "data": data
+      "data": data.Loans
     })
   } catch (err) {
     console.log(err)
@@ -142,8 +145,8 @@ const destroy = async (req, res) => {
 
 module.exports = {
   getAll,
-  getById,
-  getAllLoans,
+  getByRegistry,
+  getAllLoansByUserRegistry,
   create,
   update,
   destroy

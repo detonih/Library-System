@@ -42,10 +42,10 @@ const create = async (req, res) => {
       }
     });
 
-    // if data isn't null means Loan exists
+    // if data isn't null means Departament exists
     if(findDataIfExists !== null) {
       res.status(201).json({
-        "message": "Loan created sucessfully",
+        "message": "Departament created sucessfully",
         "data": findDataIfExists
       });
     } else {
@@ -74,10 +74,10 @@ const update = async (req, res) => {
       }
     })
 
-    // if data isn't null means Loan exists
+    // if data isn't null means departament exists
     if(findDataIfExists !== null) {
       res.status(201).json({
-        "message": "Loan updated sucessfully",
+        "message": "Departament updated sucessfully",
         "data": findDataIfExists
       });
     } else {
@@ -105,10 +105,10 @@ const destroy = async (req, res) => {
       }
     });
     
-    // if data is null means loan was deleted
+    // if data is null means Departament was deleted
     if(findDataIfExists === null) {
       res.status(200).send({
-        message: "Loan deleted sucessfully"
+        message: "Departament deleted sucessfully"
       });
     } else {
       res.status(404).json({
