@@ -1,4 +1,5 @@
 const { User } = require('../models/User');
+const { Loan } = require('../models/Loan');
 
 const getAll = async (req, res) => {
   try {
@@ -29,6 +30,23 @@ const getById = async (req, res) => {
 
   }
 } 
+
+const getAllLoans = async (req, res) => {
+  try {
+    const data = await User.getAll({
+      where: {
+        include: Loan
+      }
+    });
+
+    res.status(200).json({
+      "total": data.length,
+      "data": data
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 const create = async (req, res) => {
   try {
@@ -93,6 +111,7 @@ const destroy = async (req, res) => {
 module.exports = {
   getAll,
   getById,
+  getAllLoans,
   create,
   update,
   destroy
