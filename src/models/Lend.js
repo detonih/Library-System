@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
-const { Book } = require('../models/Book');
+const { Book } = require('./Book');
 
-const Loan = sequelize.define('Loan', {
+const Lend = sequelize.define('Lend', {
   code: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -19,6 +19,6 @@ const Loan = sequelize.define('Loan', {
   }
 });
 
-//Implementation of loan and book association needed
+//Implementation of lend and book association needed
 
-module.exports = { Loan };
+module.exports = { Lend };

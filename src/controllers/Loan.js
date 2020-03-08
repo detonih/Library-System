@@ -1,9 +1,9 @@
-const { Loan } = require('../models/Loan');
+const { Lend } = require('../models/Lend');
 const { Book } = require('../models/Book');
 
 const getAll = async (req, res) => {
   try {
-    const data = await Loan.findAll();
+    const data = await Lend.findAll();
     
     res.status(200).json({
         "total": data.length,
@@ -17,7 +17,7 @@ const getAll = async (req, res) => {
 const getById = async (req, res) => {
   try {
     const { code } = req.params
-    const data = await Loan.findOne({
+    const data = await Lend.findOne({
         where: {
           code
         }
@@ -31,11 +31,11 @@ const getById = async (req, res) => {
   }
 }
 
-const getAllBooksByLoanCode= async (req, res) => {
+const getAllBooksByLendCode= async (req, res) => {
   try{
     const { code } = req.params;
     console.log(code)
-    const data = await Loan.findOne({
+    const data = await Lend.findOne({
       where: {
         code
       },
@@ -53,22 +53,22 @@ const getAllBooksByLoanCode= async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const loan = req.body;
-    const parseLoan = req.body.BookTrackingCode
-    const data = await Loan.create(loan);
+    const Lend = req.body;
+    const parseLend = req.body.BookTrackingCode
+    const data = await Lend.create(Lend);
 
     const { code } = data;
     
-    const findDataIfExists = await Loan.findOne({
+    const findDataIfExists = await Lend.findOne({
       where: {
         code
       }
     });
 
-    // if data isn't null means Loan exists
+    // if data isn't null means lend exists
     if(findDataIfExists !== null) {
       res.status(201).json({
-        "message": "Loan created sucessfully",
+        "message": "Lend created sucessfully",
         "data": findDataIfExists
       });
     } else {
@@ -84,23 +84,23 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   try {
     const { code } = req.params;
-    const loan = req.body;
-    const data = await Loan.update(loan, {
+    const lend = req.body;
+    const data = await Lend.update(lend, {
       where: {
         code
       }
     });
 
-    const findDataIfExists = await Loan.findOne({
+    const findDataIfExists = await Lend.findOne({
       where: {
         code
       }
     })
 
-    // if data isn't null means Loan exists
+    // if data isn't null means Lend exists
     if(findDataIfExists !== null) {
       res.status(201).json({
-        "message": "Loan updated sucessfully",
+        "message": "Lend updated sucessfully",
         "data": findDataIfExists
       });
     } else {
@@ -116,22 +116,22 @@ const update = async (req, res) => {
 const destroy = async (req, res) => {
   try {
     const { code } = req.params;
-    const data = await Loan.destroy({
+    const data = await Lend.destroy({
       where: {
         code
       }
     });
 
-    const findDataIfExists = await Loan.findOne({
+    const findDataIfExists = await Lend.findOne({
       where: {
         code
       }
     });
     
-    // if data is null means loan was deleted
+    // if data is null means Lend was deleted
     if(findDataIfExists === null) {
       res.status(200).send({
-        message: "Loan deleted sucessfully"
+        message: "Lend deleted sucessfully"
       });
     } else {
       res.status(404).json({
@@ -147,7 +147,7 @@ const destroy = async (req, res) => {
 module.exports = {
   getAll,
   getById,
-  getAllBooksByLoanCode,
+  getAllBooksByLendCode,
   create,
   update,
   destroy

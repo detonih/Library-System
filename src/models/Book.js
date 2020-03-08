@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
-//const { Loan } = require('../models/Loan');
+//const { Lend } = require('../models/Lend');
 
 const Book = sequelize.define('Book', {
   tracking_code: {

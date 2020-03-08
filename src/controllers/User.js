@@ -1,5 +1,5 @@
 const { User } = require('../models/User');
-const { Loan } = require('../models/Loan');
+const { Lend } = require('../models/Lend');
 
 const getAll = async (req, res) => {
   try {
@@ -31,7 +31,7 @@ const getByRegistry = async (req, res) => {
   }
 } 
 
-const getAllLoansByUserRegistry = async (req, res) => {
+const getAllLendsByUserRegistry = async (req, res) => {
   try {
     const { registry } = req.params;
     
@@ -39,11 +39,11 @@ const getAllLoansByUserRegistry = async (req, res) => {
       where: {
         registry
       },
-      include: Loan
+      include: Lend
     });
 
     res.status(200).json({
-      "total": data.Loans.length,
+      "total": data.Lends.length,
       "data": data
     });
   } catch (err) {
@@ -146,7 +146,7 @@ const destroy = async (req, res) => {
 module.exports = {
   getAll,
   getByRegistry,
-  getAllLoansByUserRegistry,
+  getAllLendsByUserRegistry,
   create,
   update,
   destroy
