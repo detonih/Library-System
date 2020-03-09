@@ -2,10 +2,9 @@
   "name": "library-system",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/app.js",
   "scripts": {
     "test": "jest --runInBand --detectOpenHandles",
-    "start": ""
+    "start": "nodemon -r dotenv/config ./src/bin/server.js"
   },
   "keywords": [],
   "author": "",

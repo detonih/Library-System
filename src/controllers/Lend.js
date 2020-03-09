@@ -34,7 +34,7 @@ const getById = async (req, res) => {
 const getAllBooksByLendCode= async (req, res) => {
   try{
     const { code } = req.params;
-    console.log(code)
+    
     const data = await Lend.findOne({
       where: {
         code
@@ -53,9 +53,8 @@ const getAllBooksByLendCode= async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const Lend = req.body;
-    const parseLend = req.body.BookTrackingCode
-    const data = await Lend.create(Lend);
+    const lend = req.body;
+    const data = await Lend.create(lend);
 
     const { code } = data;
     

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
-const { Book } = require('./Book');
+//const { Book } = require('./Book');
 
 const Lend = sequelize.define('Lend', {
   code: {
@@ -18,7 +18,5 @@ const Lend = sequelize.define('Lend', {
     allowNull: false
   }
 });
-
-//Implementation of lend and book association needed
 
 module.exports = { Lend };

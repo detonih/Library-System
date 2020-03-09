@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
-//const { Lend } = require('../models/Lend');
+const { Lend } = require('../models/Lend');
 
 const Book = sequelize.define('Book', {
   tracking_code: {
@@ -18,5 +18,8 @@ const Book = sequelize.define('Book', {
     allowNull: false
   }
 });
+
+Book.belongsToMany(Lend, { through: 'BookLends' });
+Lend.belongsToMany(Book, { through: 'BookLends' });
 
 module.exports = { Book };
